@@ -1,0 +1,68 @@
+{
+  "type": "index",
+  "spec": {
+    "dataSchema": {
+      "dataSource": "sales_csv",
+      "parser": {
+        "type": "csv.stream",
+        "timestampSpec": {
+          "type": "yyyy-MM-dd",
+          "column": "dt",
+          "missingValue": "2021-04-26T00:43:38.713Z",
+          "invalidValue": "2021-04-26T00:43:38.713Z",
+          "replaceWrongColumn": true
+        },
+        "dimensionsSpec": {
+          "dimensions": ["Col_2","Col_3","Col_4","Col_5","Col_6","Col_7","Col_8","Col_9","Col_10","Col_11","Col_12","Col_13","Col_14","Col_15","Col_16","Col_17","Col_18","Col_19","Col_20","Col_21","Col_22","Col_23","Col_24","Col_25","Col_26","Col_27","Col_28"],
+          "dimensionExclusions": [],
+          "spatialDimensions": []
+        },
+
+        "columns" : ["Col_2","Col_3","Col_4","Col_5","Col_6","Col_7","Col_8","Col_9","Col_10","Col_11","Col_12","Col_13","Col_14","Col_15","Col_16","Col_17","Col_18","Col_19","Col_20","Col_21","Col_22","Col_23","Col_24","Col_25","Col_26","Col_27","Col_28","dt"]
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "DAY",
+        "queryGranularity": "DAY",
+        "intervals": [
+          "2011-01-03/2011-02-01"
+        ],
+        "rollup": false,
+        "append": false
+      },
+      "enforceType": true
+    },
+    "ioConfig" : {
+      "type" : "index",
+      "firehose" : {
+        "type" : "local",
+        "baseDir" : "/tmp",
+        "filter" : "sales_csv.csv",
+        "extractPartition" : false
+      }
+    },
+    "tuningConfig" : {
+      "type" : "index",
+      "targetPartitionSize" : 5000000,
+      "indexSpec" : {
+        "bitmap" : {
+          "type" : "roaring"
+        },
+        "dimensionSketches" : {
+          "type" : "none"
+        },
+        "allowNullForNumbers" : false
+      },
+      "buildV9Directly" : true,
+      "ignoreInvalidRows" : true,
+      "maxRowsInMemory" : 75000,
+      "maxOccupationInMemory" : -1
+    }
+  }
+}

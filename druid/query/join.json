@@ -1,0 +1,130 @@
+{
+  "queryType": "select.stream",
+  "dataSource": {
+    "type": "query",
+    "query": {
+      "queryType": "join",
+      "dataSources": {
+        "sample_sales": {
+          "type": "table",
+          "name": "sample_sales"
+        },
+        "sales_csv": {
+          "type": "table",
+          "name": "sales_csv"
+        }
+      },
+      "intervals": {
+        "type": "LegacySegmentSpec",
+        "intervals": [
+          "1900-01-01T00:00:00.000Z/2051-01-01T00:00:00.000Z"
+        ]
+      },
+      "elements": [
+        {
+          "joinType": "LO",
+          "leftAlias": "sample_sales",
+          "leftJoinColumns": [
+            "City"
+          ],
+          "rightAlias": "sales_csv",
+          "rightJoinColumns": [
+            "Col_3"
+          ]
+        }
+      ],
+      "prefixAlias": true,
+      "asMap": false,
+      "limit": 100000,
+      "dataSource": {
+        "type": "union",
+        "dataSources": [
+          "sample_sales",
+          "sales_csv"
+        ]
+      },
+      "descending": false
+    }
+  },
+  "intervals": {
+    "type": "LegacySegmentSpec",
+    "intervals": [
+      "1900-01-01T00:00:00.000Z/2051-01-01T00:00:00.000Z"
+    ]
+  },
+  "descending": false,
+  "columns": [
+    "sample_sales.OrderDate.vc",
+    "sample_sales.Category",
+    "sample_sales.City",
+    "sample_sales.Country",
+    "sample_sales.CustomerName",
+    "sample_sales.OrderID",
+    "sample_sales.PostalCode",
+    "sample_sales.ProductName",
+    "sample_sales.Quantity",
+    "sample_sales.Region",
+    "sample_sales.Segment",
+    "sample_sales.ShipDate",
+    "sample_sales.ShipMode",
+    "sample_sales.State",
+    "sample_sales.Sub-Category",
+    "sample_sales.ShipStatus",
+    "sample_sales.OrderProfitable",
+    "sample_sales.SalesaboveTarget",
+    "sample_sales.latitude",
+    "sample_sales.longitude",
+    "sample_sales.Discount",
+    "sample_sales.Profit",
+    "sample_sales.Sales",
+    "sample_sales.DaystoShipActual",
+    "sample_sales.SalesForecast",
+    "sample_sales.DaystoShipScheduled",
+    "sample_sales.SalesperCustomer",
+    "sample_sales.ProfitRatio",
+    "sales_csv.Col_1.vc",
+    "sales_csv.Col_2",
+    "sales_csv.Col_3",
+    "sales_csv.Col_4",
+    "sales_csv.Col_5",
+    "sales_csv.Col_6",
+    "sales_csv.Col_7",
+    "sales_csv.Col_8",
+    "sales_csv.Col_9",
+    "sales_csv.Col_10",
+    "sales_csv.Col_11",
+    "sales_csv.Col_12",
+    "sales_csv.Col_13",
+    "sales_csv.Col_14",
+    "sales_csv.Col_15",
+    "sales_csv.Col_16",
+    "sales_csv.Col_17",
+    "sales_csv.Col_18",
+    "sales_csv.Col_19",
+    "sales_csv.Col_20",
+    "sales_csv.Col_21",
+    "sales_csv.Col_22",
+    "sales_csv.Col_23",
+    "sales_csv.Col_24",
+    "sales_csv.Col_25",
+    "sales_csv.Col_26",
+    "sales_csv.Col_27",
+    "sales_csv.Col_28"
+  ],
+  "virtualColumns": [
+    {
+      "type": "expr",
+      "expression": "time_format(sales_csv.__time,out.format='yyyy-MM-dd HH:mm:ss',out.timezone='Asia/Seoul',out.locale='en')",
+      "outputName": "sales_csv.Col_1.vc"
+    },
+    {
+      "type": "expr",
+      "expression": "time_format(sample_sales.__time,out.format='yyyy-MM-dd\\'T\\'HH:mm:ssZZ',out.timezone='Asia/Seoul',out.locale='en')",
+      "outputName": "sample_sales.OrderDate.vc"
+    }
+  ],
+  "limitSpec": {
+    "type": "default",
+    "limit": 1000
+  }
+}

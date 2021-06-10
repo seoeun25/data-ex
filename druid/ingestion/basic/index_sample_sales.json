@@ -1,0 +1,68 @@
+{
+  "type": "index",
+  "spec": {
+    "dataSchema": {
+      "dataSource": "sample_sales",
+      "parser": {
+        "type": "csv.stream",
+        "timestampSpec": {
+          "type": "yyyy-MM-dd",
+          "column": "dt",
+          "missingValue": "2021-04-26T00:43:38.713Z",
+          "invalidValue": "2021-04-26T00:43:38.713Z",
+          "replaceWrongColumn": true
+        },
+        "dimensionsSpec": {
+          "dimensions": ["Category","City","Country","CustomerName","DaystoShipActual","DaystoShipScheduled","Discount","OrderID","OrderProfitable","PostalCode","ProductName","Profit","ProfitRatio","Quantity","Region","Sales","SalesForecast","SalesaboveTarget","SalesperCustomer","Segment","ShipDate","ShipMode","ShipStatus","State","Sub-Category"],
+          "dimensionExclusions": [],
+          "spatialDimensions": []
+        },
+
+        "columns" : ["Category","City","Country","CustomerName","DaystoShipActual","DaystoShipScheduled","Discount","OrderID","OrderProfitable","PostalCode","ProductName","Profit","ProfitRatio","Quantity","Region","Sales","SalesForecast","SalesaboveTarget","SalesperCustomer","Segment","ShipDate","ShipMode","ShipStatus","State","Sub-Category","dt"]
+      },
+      "metricsSpec": [
+        {
+          "type": "count",
+          "name": "count"
+        }
+      ],
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "DAY",
+        "queryGranularity": "DAY",
+        "intervals": [
+          "2011-01-03/2011-02-01"
+        ],
+        "rollup": false,
+        "append": false
+      },
+      "enforceType": true
+    },
+    "ioConfig" : {
+      "type" : "index",
+      "firehose" : {
+        "type" : "local",
+        "baseDir" : "/tmp",
+        "filter" : "sample_sales.csv",
+        "extractPartition" : false
+      }
+    },
+    "tuningConfig" : {
+      "type" : "index",
+      "targetPartitionSize" : 5000000,
+      "indexSpec" : {
+        "bitmap" : {
+          "type" : "roaring"
+        },
+        "dimensionSketches" : {
+          "type" : "none"
+        },
+        "allowNullForNumbers" : false
+      },
+      "buildV9Directly" : true,
+      "ignoreInvalidRows" : true,
+      "maxRowsInMemory" : 75000,
+      "maxOccupationInMemory" : -1
+    }
+  }
+}

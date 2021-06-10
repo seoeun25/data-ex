@@ -1,0 +1,44 @@
+{
+  "queryType": "join",
+  "dataSources": {
+    "sample_sales": {
+      "type": "table",
+      "name": "sample_sales"
+    },
+    "sales_csv": {
+      "type": "table",
+      "name": "sales_csv"
+    }
+  },
+  "intervals": {
+    "type": "LegacySegmentSpec",
+    "intervals": [
+      "1900-01-01T00:00:00.000Z/2051-01-01T00:00:00.000Z"
+    ]
+  },
+  "elements": [
+    {
+      "joinType": "LO",
+      "leftAlias": "sample_sales",
+      "leftJoinColumns": [
+        "City"
+      ],
+      "rightAlias": "sales_csv",
+      "rightJoinColumns": [
+        "Col_3"
+      ]
+    }
+  ],
+  "prefixAlias": true,
+  "asMap": false,
+  "limit": 100000,
+  "dataSource": {
+    "type": "union",
+    "dataSources": [
+      "sample_sales",
+      "sales_csv"
+    ]
+  },
+  "descending": false
+}
+
