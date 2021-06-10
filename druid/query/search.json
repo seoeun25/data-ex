@@ -1,0 +1,23 @@
+{
+  "queryType": "search",
+  "dataSource": {
+    "type": "table",
+    "name": "worldcup"
+  },
+  "granularity": "day",
+  "searchDimensions": [
+    "City",
+    "Country"
+  ],
+  "query": {
+    "type": "all"
+  },
+  "sort" : {
+    "type": "lexicographic"
+  },
+  "intervals": [
+    "1900-01-01T00:00:00.0Z/2051-01-01T00:00:00.0Z"
+  ],
+  "limit": 100
+}
+
