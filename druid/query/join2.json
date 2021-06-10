@@ -2,11 +2,11 @@
   "queryType": "join",
   "dataSources": {
     "sample_sales": {
-      "type": "table",
+      "type": "view",
       "name": "sample_sales"
     },
     "sales_csv": {
-      "type": "table",
+      "type": "view",
       "name": "sales_csv"
     }
   },
@@ -32,13 +32,6 @@
   "prefixAlias": true,
   "asMap": false,
   "limit": 100000,
-  "dataSource": {
-    "type": "union",
-    "dataSources": [
-      "sample_sales",
-      "sales_csv"
-    ]
-  },
   "descending": false
 }
 
