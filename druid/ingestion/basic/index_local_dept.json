@@ -2,7 +2,7 @@
   "type": "index",
   "spec": {
     "dataSchema": {
-      "dataSource": "dept",
+      "dataSource": "dept_local",
       "parser": {
         "type": "csv.stream",
         "timestampSpec": {
