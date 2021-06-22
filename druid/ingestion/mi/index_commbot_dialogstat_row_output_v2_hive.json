@@ -15,7 +15,7 @@
           "timestampSpec" : {
             "type" : "hadoop",
             "column" : "dt",
-            "format" : "yyyy-MM-dd",
+            "format" : "auto",
             "missingValue" : "2020-11-23T09:02:07.856Z",
             "invalidValue" : "2020-11-23T09:02:07.856Z",
             "replaceWrongColumn" : false,
