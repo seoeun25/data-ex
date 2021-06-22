@@ -71,3 +71,47 @@ alter table dialogStat_row_output_v2 add partition (dt='2020-11-20', type='prd')
 
 ;
 alter table order_items add partition (year=2013, month=1);
+
+CREATE EXTERNAL TABLE `poc_funnel`(
+  `level` string,
+  `service` string,
+  `type` string,
+  `request_id` string,
+  `client_id` string,
+  `channel_id` string,
+  `hashed_user_id` string,
+  `process_id` string,
+  `item_id` string,
+  `datetime` string,
+  `experiment_id` string,
+  `bucket_name` string,
+  `ml_model_type` string,
+  `item_ord` bigint,
+  `sale_org_id` string,
+  `poc_cd` string,
+  `poc_nm` string,
+  `reco_type` string,
+  `reco_nm` string,
+  `std_item_id` string,
+  `std_item_nm` string,
+  `item_type` string,
+  `channel` string,
+  `sex_cd` string,
+  `svc_gr_cd` string,
+  `twd_device_nm` string,
+  `cust_birth_dt` string,
+  `cust_age` bigint,
+  `prod_nm` string,
+  `svc_scrb_dt` string)
+PARTITIONED BY (
+  `dt` string)
+ROW FORMAT SERDE
+  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat'
+OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+  '/data-src/mi/poc_funnel'
+
+alter table poc_funnel add partition (dt='2021-02-08');

@@ -1,0 +1,102 @@
+{
+  "type" : "index_hadoop",
+  "spec" : {
+    "dataSchema" : {
+      "dataSource" : "funnel_poc_funnel",
+      "parser" : {
+        "type" : "map",
+        "parseSpec" : {
+          "format" : "timeAndDims",
+          "dimensionsSpec" : {
+            "xdimensions" : [ "level", "service", "type", "client_id", "channel_id", "item_id", "experiment_id", "bucket_name", "ml_model_type", "sale_org_id", "poc_cd", "poc_nm", "reco_type", "reco_nm", "std_item_id", "std_item_nm", "item_type", "item_ord", "channel", "sex_cd", "cust_age", "svc_gr_cd", "twd_device_nm", "prod_nm" ],
+            "dimensions" : [ "level", "service", "type", "client_id", "channel_id", "item_id", "experiment_id", "bucket_name", "ml_model_type", "sale_org_id", "poc_cd", "poc_nm", "reco_type", "reco_nm", "std_item_id", "std_item_nm", "item_type", "item_ord", "channel" ],
+            "dimensionExclusions" : [ ],
+            "spatialDimensions" : [ ]
+          },
+          "timestampSpec" : {
+            "type" : "hadoop",
+            "column" : "dt",
+            "format" : "yyyy-MM-dd",
+            "missingValue" : "2021-03-09T06:29:33.637Z",
+            "invalidValue" : "2021-03-09T06:29:33.637Z",
+            "replaceWrongColumn" : false,
+            "timeZone" : "UTC",
+            "locale" : "en"
+          }
+        }
+      },
+      "metricsSpec" : [ {
+        "type" : "count",
+        "name" : "count"
+      }, {
+        "type" : "thetaSketch",
+        "name" : "process_id",
+        "fieldName" : "process_id",
+        "predicate" : null,
+        "size" : 65536,
+        "shouldFinalize" : true,
+        "isInputThetaSketch" : false
+      }, {
+        "type" : "thetaSketch",
+        "name" : "request_id",
+        "fieldName" : "request_id",
+        "predicate" : null,
+        "size" : 65536,
+        "shouldFinalize" : true,
+        "isInputThetaSketch" : false
+      }, {
+        "type" : "thetaSketch",
+        "name" : "hashed_user_id",
+        "fieldName" : "hashed_user_id",
+        "predicate" : null,
+        "size" : 65536,
+        "shouldFinalize" : true,
+        "isInputThetaSketch" : false
+      } ],
+      "enforceType" : true,
+      "granularitySpec" : {
+        "type" : "uniform",
+        "segmentGranularity" : "DAY",
+        "queryGranularity" : "DAY",
+        "rollup" : false,
+        "append" : false,
+        "intervals" : [ "2021-02-08T00:00:00.000Z/2021-02-09T00:00:00.000Z" ]
+      },
+      "dimensionFixed" : false
+    },
+    "ioConfig" : {
+      "type" : "hadoop",
+      "inputSpec" : {
+        "type" : "hive",
+        "source" : "poc_funnel",
+        "metastoreUri" : "thrift://azra:9083",
+        "partialPartitionList" : [ {
+          "dt" : "2021-02-08"
+        } ],
+        "splitSize" : "512M"
+      }
+    },
+    "tuningConfig" : {
+      "type" : "hadoop",
+      "partitionsSpec" : {
+        "type" : "sized",
+        "targetPartitionSize" : 0,
+        "maxPartitionSize" : 0,
+        "assumeGrouped" : false,
+        "numShards" : -1,
+        "partitionDimensions" : [ ]
+      },
+      "ignoreInvalidRows" : true,
+      "jobProperties" : {
+        "mapreduce.map.memory.mb" : "4096",
+        "mapreduce.task.files.preserve.filepattern" : ".*",
+        "mapreduce.reduce.memory.mb" : "4096",
+        "keep.task.files.pattern" : ".*",
+        "mapreduce.map.java.opts" : "-server -Xmx4096m -Duser.timezone=UTC -Dfile.encoding=UTF-8 -XX:+PrintGCDetails -XX:+PrintGCTimeStamps",
+        "mapreduce.job.user.classpath.first" : "true",
+        "mapreduce.reduce.java.opts" : "-server -Xmx4096m -Duser.timezone=UTC -Dfile.encoding=UTF-8 -XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+      },
+      "ingestionMode" : "REDUCE_MERGE"
+    }
+  }
+}
