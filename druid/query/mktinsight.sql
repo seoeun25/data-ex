@@ -13,3 +13,15 @@ SELECT
 FROM
    "druid"."etl_poc_funnel_02" AS t1
 limit 10
+
+SELECT
+  adult_child_cnt, adult_child_yn, age, age_group, st11_cat, cardinality(st11_cat), unwrap(st11_cat)
+FROM
+"seg_profile_test_bitset"
+WHERE _bs(st11_cat) = '3'
+
+SELECT
+  adult_child_cnt, adult_child_yn, age, age_group, st11_cat, cardinality(st11_cat), unwrap(st11_cat)
+FROM
+"seg_profile_test_bitset"
+WHERE _bs(st11_cat) IN ('3', '6', '9')
