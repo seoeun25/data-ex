@@ -1,0 +1,72 @@
+{
+  "type" : "index",
+  "spec" : {
+    "dataSchema" : {
+      "dataSource" : "profile",
+      "parser" : {
+        "type" : "csv.stream",
+        "dimensionsSpec" : {
+          "dimensions": [
+            "svc_mgmt_num", "sex_cd", "age", "pay_cnt", "pay_group_cd", "mobile_group_cd", "eqp_type"
+          ],
+          "dimensionExclusions" : [ ],
+          "spatialDimensions" : [ ]
+        },
+        "timestampSpec" : {
+          "column" : "ym",
+          "format" : "yyyyMM",
+          "missingValue" : "2021-06-22T23:03:34.778Z",
+          "invalidValue" : "2021-06-22T23:03:34.778Z",
+          "replaceWrongColumn" : false,
+          "timeZone" : "UTC",
+          "locale" : "en"
+        },
+        "columns": [
+          "svc_mgmt_num", "sex_cd", "age", "age_group_cd", "pay_cnt", "pay_group_cd", "mobile_use_ratio", "mobile_group_cd", "eqp_type",
+          "st11_cat1", "st11_cat2", "st11_cat3", "st11_cat4", "st11_cat5", "st11_cat6", "st11_cat7", "st11_cat8", "st11_cat9", "st11_cat10",
+          "st11_cat11", "st11_cat12", "st11_cat13", "st11_cat14", "st11_cat15", "st11_cat16", "st11_cat17", "st11_cat18", "st11_cat19", "st11_cat20",
+          "ym"
+        ]
+      },
+      "metricsSpec": [
+        {"type": "relay", "name": "st11_cat", "typeName": "bitset", "extractHints": ["prefixedBooleanColumns", "st11_cat"]}
+      ],
+      "enforceType" : true,
+      "granularitySpec" : {
+        "type" : "uniform",
+        "segmentGranularity" : "YEAR",
+        "queryGranularity" : "DAY",
+        "rollup" : false,
+        "append" : false,
+        "intervals" : [ "2020-01-01T00:00:00.000Z/2021-01-01T00:00:00.000Z" ]
+      },
+      "dimensionFixed" : false
+    },
+    "ioConfig" : {
+      "type" : "index",
+      "firehose" : {
+        "type" : "local",
+        "baseDir" : "/tmp",
+        "filter" : "seg_profile.csv",
+        "extractPartition" : false
+      }
+    },
+    "tuningConfig" : {
+      "type" : "index",
+      "targetPartitionSize" : 5000000,
+      "indexSpec" : {
+        "bitmap" : {
+          "type" : "roaring"
+        },
+        "dimensionSketches" : {
+          "type" : "none"
+        },
+        "allowNullForNumbers" : false
+      },
+      "buildV9Directly" : true,
+      "ignoreInvalidRows" : true,
+      "maxRowsInMemory" : 75000,
+      "maxOccupationInMemory" : -1
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "type" : "index_hadoop",
   "spec" : {
     "dataSchema" : {
-      "dataSource" : "seg_profile_test_bitset",
+      "dataSource" : "seg_profile_test_bitset2",
       "parser" : {
         "type" : "string",
         "parseSpec" : {
@@ -36,10 +36,10 @@
       "granularitySpec" : {
         "type" : "uniform",
         "segmentGranularity" : "YEAR",
-        "queryGranularity" : "MONTH",
+        "queryGranularity" : "DAY",
         "rollup" : false,
         "append" : false,
-        "intervals" : [ "2020-12-01T00:00:00.000Z/2021-01-01T00:00:00.000Z" ]
+        "intervals" : [ "2020-01-01T00:00:00.000Z/2021-01-01T00:00:00.000Z" ]
       },
       "dimensionFixed" : false
     },
