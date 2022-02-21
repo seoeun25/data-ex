@@ -1,0 +1,343 @@
+{
+  "type" : "index_hadoop",
+  "spec" : {
+    "dataSchema" : {
+      "dataSource" : "cdis_cdis_user_02",
+      "parser" : {
+        "type" : "map",
+        "parseSpec" : {
+          "format" : "timeAndDims",
+          "dimensionsSpec" : {
+            "dimensions" : [ "svc_mgmt_num", "seg_id", "seg_nm_kor", "seg_keyword", "age_group", "pay_cnt_all", "mobile_usage_all", "pay_cnt_age_group", "mobile_usage_age_group", "sex_cd", "occupation", "child_yn", "adult_child_yn", "child_age", "family_characteristic", "region_name", "resident", "service_music", "service_ott", "move_d1", "transportation", "visit_loc_cnt_cd", "hourly_payment_d1", "xdr_d1", "xdr_d2", "xdr_d3", "xdr_d4", "st11_d1", "st11_d2", "channel_d1", "location_d1", "location_d2", "location_d3", "interest_d1", "interest_d2", "interest_d3", "cdr_d1", "cdr_d2", "cdr_d3", "cdr_age", "home_sido_cd", "home_sgng_cd", "home_ldong_cd", "visit_1_sido_cd", "visit_1_sgng_cd", "visit_1_ldong_cd", "visit_1_purpose_1", "visit_1_purpose_2", "visit_2_sido_cd", "visit_2_sgng_cd", "visit_2_ldong_cd", "visit_2_purpose_1", "visit_2_purpose_2", "visit_3_sido_cd", "visit_3_sgng_cd", "visit_3_ldong_cd", "visit_3_purpose_1", "visit_3_purpose_2", "visit_4_sido_cd", "visit_4_sgng_cd", "visit_4_ldong_cd", "visit_4_purpose_1", "visit_4_purpose_2", "visit_5_sido_cd", "visit_5_sgng_cd", "visit_5_ldong_cd", "visit_5_purpose_1", "visit_5_purpose_2", "wavve_event_d0", "wavve_event_d1", "wavve_event_d2", "wavve_subs", "wavve_cntnts", "flo_event_d0", "flo_event_d1", "flo_event_d2", "flo_subs", "flo_cntnts", "xcld_event_d0", "xcld_event_d1", "xcld_event_d2", "xcld_subs", "xcld_cntnts", "bks_event_d0", "bks_event_d1", "bks_event_d2", "bks_subs", "bks_cntnts", "vclng_event_d0", "vclng_event_d1", "vclng_event_d2", "vclng_subs", "vclng_cntnts" ],
+            "dimensionExclusions" : [ ],
+            "spatialDimensions" : [ ]
+          },
+          "timestampSpec" : {
+            "type" : "hadoop",
+            "column" : "current_datetime",
+            "missingValue" : "2021-07-23T09:25:38.939Z",
+            "invalidValue" : "2021-07-23T09:25:38.939Z",
+            "replaceWrongColumn" : false
+          }
+        }
+      },
+      "metricsSpec" : [ {
+        "type" : "relay",
+        "name" : "mth_age",
+        "columnName" : "mth_age",
+        "typeName" : "long"
+      }, {
+        "type" : "relay",
+        "name" : "fmly_memb_cnt",
+        "columnName" : "fmly_memb_cnt",
+        "typeName" : "long"
+      }, {
+        "type" : "relay",
+        "name" : "hhld_memb_cnt",
+        "columnName" : "hhld_memb_cnt",
+        "typeName" : "long"
+      }, {
+        "type" : "relay",
+        "name" : "child_total_cnt",
+        "columnName" : "child_total_cnt",
+        "typeName" : "long"
+      }, {
+        "type" : "relay",
+        "name" : "mobility_cnt_train",
+        "columnName" : "mobility_cnt_train",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "mobility_cnt_subway",
+        "columnName" : "mobility_cnt_subway",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "mobility_cnt_intl_flight",
+        "columnName" : "mobility_cnt_intl_flight",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "mobility_cnt_dome_flight",
+        "columnName" : "mobility_cnt_dome_flight",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "mobility_cnt_car",
+        "columnName" : "mobility_cnt_car",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "visit_loc_cnt",
+        "columnName" : "visit_loc_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "voc_snd_cnt",
+        "columnName" : "voc_snd_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "sms_snd_cnt",
+        "columnName" : "sms_snd_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "voc_cnt",
+        "columnName" : "voc_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "sms_cnt",
+        "columnName" : "sms_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "voc_snd_prtn_cnt",
+        "columnName" : "voc_snd_prtn_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "sms_snd_prtn_cnt",
+        "columnName" : "sms_snd_prtn_cnt",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "visit_1_score",
+        "columnName" : "visit_1_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "visit_2_score",
+        "columnName" : "visit_2_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "visit_3_score",
+        "columnName" : "visit_3_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "visit_4_score",
+        "columnName" : "visit_4_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "visit_5_score",
+        "columnName" : "visit_5_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "wavve_score",
+        "columnName" : "wavve_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "flo_score",
+        "columnName" : "flo_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "xcld_score",
+        "columnName" : "xcld_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "bks_score",
+        "columnName" : "bks_score",
+        "typeName" : "double"
+      }, {
+        "type" : "relay",
+        "name" : "vclng_score",
+        "columnName" : "vclng_score",
+        "typeName" : "double"
+      } ],
+      "enforceType" : true,
+      "granularitySpec" : {
+        "type" : "uniform",
+        "segmentGranularity" : "MONTH",
+        "queryGranularity" : "MONTH",
+        "rollup" : false,
+        "append" : false,
+        "intervals" : [ "2021-01-23T09:25:38.939Z/2022-01-23T09:25:38.939Z" ]
+      },
+      "evaluations" : [ {
+        "outputName" : "child_age",
+        "expressions" : [ "split(child_age_agg, ',')" ]
+      }, {
+        "outputName" : "family_characteristic",
+        "expressions" : [ "split(family_characteristic_agg, ',')" ]
+      }, {
+        "outputName" : "transportation",
+        "expressions" : [ "split(transportation_agg, ',')" ]
+      }, {
+        "outputName" : "service_music",
+        "expressions" : [ "split(service_music_agg, ',')" ]
+      }, {
+        "outputName" : "service_ott",
+        "expressions" : [ "split(service_ott_agg, ',')" ]
+      }, {
+        "outputName" : "cdr_age",
+        "expressions" : [ "split(cdr_age_agg, ',')" ]
+      }, {
+        "outputName" : "occupation",
+        "expressions" : [ "split(occupation_agg, ',')" ]
+      }, {
+        "outputName" : "move_d1",
+        "expressions" : [ "split(move_d1_agg, ',')" ]
+      }, {
+        "outputName" : "hourly_payment_d1",
+        "expressions" : [ "split(hourly_payment_d1_agg, ',')" ]
+      }, {
+        "outputName" : "xdr_d1",
+        "expressions" : [ "split(xdr_d1_agg, ',')" ]
+      }, {
+        "outputName" : "xdr_d2",
+        "expressions" : [ "split(xdr_d2_agg, ',')" ]
+      }, {
+        "outputName" : "xdr_d3",
+        "expressions" : [ "split(xdr_d3_agg, ',')" ]
+      }, {
+        "outputName" : "xdr_d4",
+        "expressions" : [ "split(xdr_d4_agg, ',')" ]
+      }, {
+        "outputName" : "st11_d1",
+        "expressions" : [ "split(st11_d1_agg, ',')" ]
+      }, {
+        "outputName" : "st11_d2",
+        "expressions" : [ "split(st11_d2_agg, ',')" ]
+      }, {
+        "outputName" : "channel_d1",
+        "expressions" : [ "split(channel_d1_agg, ',')" ]
+      }, {
+        "outputName" : "location_d1",
+        "expressions" : [ "split(location_d1_agg, ',')" ]
+      }, {
+        "outputName" : "location_d2",
+        "expressions" : [ "split(location_d2_agg, ',')" ]
+      }, {
+        "outputName" : "location_d3",
+        "expressions" : [ "split(location_d3_agg, ',')" ]
+      }, {
+        "outputName" : "interest_d1",
+        "expressions" : [ "split(interest_d1_agg, ',')" ]
+      }, {
+        "outputName" : "interest_d2",
+        "expressions" : [ "split(interest_d2_agg, ',')" ]
+      }, {
+        "outputName" : "interest_d3",
+        "expressions" : [ "split(interest_d3_agg, ',')" ]
+      }, {
+        "outputName" : "cdr_d1",
+        "expressions" : [ "split(cdr_d1_agg, ',')" ]
+      }, {
+        "outputName" : "cdr_d2",
+        "expressions" : [ "split(cdr_d2_agg, ',')" ]
+      }, {
+        "outputName" : "cdr_d3",
+        "expressions" : [ "split(cdr_d3_agg, ',')" ]
+      }, {
+        "outputName" : "wavve_event_d0",
+        "expressions" : [ "split(wavve_event_d0_agg, ',')" ]
+      }, {
+        "outputName" : "wavve_event_d1",
+        "expressions" : [ "split(wavve_event_d1_agg, ',')" ]
+      }, {
+        "outputName" : "wavve_event_d2",
+        "expressions" : [ "split(wavve_event_d2_agg, ',')" ]
+      }, {
+        "outputName" : "flo_event_d0",
+        "expressions" : [ "split(flo_event_d0_agg, ',')" ]
+      }, {
+        "outputName" : "flo_event_d1",
+        "expressions" : [ "split(flo_event_d1_agg, ',')" ]
+      }, {
+        "outputName" : "flo_event_d2",
+        "expressions" : [ "split(flo_event_d2_agg, ',')" ]
+      }, {
+        "outputName" : "xcld_event_d0",
+        "expressions" : [ "split(xcld_event_d0_agg, ',')" ]
+      }, {
+        "outputName" : "xcld_event_d1",
+        "expressions" : [ "split(xcld_event_d1_agg, ',')" ]
+      }, {
+        "outputName" : "xcld_event_d2",
+        "expressions" : [ "split(xcld_event_d2_agg, ',')" ]
+      }, {
+        "outputName" : "bks_event_d0",
+        "expressions" : [ "split(bks_event_d0_agg, ',')" ]
+      }, {
+        "outputName" : "bks_event_d1",
+        "expressions" : [ "split(bks_event_d1_agg, ',')" ]
+      }, {
+        "outputName" : "bks_event_d2",
+        "expressions" : [ "split(bks_event_d2_agg, ',')" ]
+      }, {
+        "outputName" : "vclng_event_d0",
+        "expressions" : [ "split(vclng_event_d0_agg, ',')" ]
+      }, {
+        "outputName" : "vclng_event_d1",
+        "expressions" : [ "split(vclng_event_d1_agg, ',')" ]
+      }, {
+        "outputName" : "vclng_event_d2",
+        "expressions" : [ "split(vclng_event_d2_agg, ',')" ]
+      } ],
+      "dimensionFixed" : false
+    },
+    "ioConfig" : {
+      "type" : "hadoop",
+      "inputSpec" : {
+        "type" : "hive",
+        "source" : "cdis.cdis_user_masking",
+        "metastoreUri" : "thrift://master2.metatron-dev:9083",
+        "partialPartitionList" : [ ],
+        "splitSize" : "512M"
+      }
+    },
+    "tuningConfig" : {
+      "type" : "hadoop",
+      "version" : "2021-07-23T09:25:38.943Z",
+      "partitionsSpec" : {
+        "type" : "sized",
+        "targetPartitionSize" : 0,
+        "maxPartitionSize" : 0,
+        "assumeGrouped" : false,
+        "numShards" : -1,
+        "partitionDimensions" : [ ]
+      },
+      "shardSpecs" : { },
+      "indexSpec" : {
+        "bitmap" : {
+          "type" : "roaring"
+        },
+        "allowNullForNumbers" : false
+      },
+      "maxRowsInMemory" : 75000,
+      "maxOccupationInMemory" : 1024000000,
+      "maxShardLength" : 256000000,
+      "leaveIntermediate" : false,
+      "cleanupOnFailure" : true,
+      "overwriteFiles" : false,
+      "ignoreInvalidRows" : true,
+      "jobProperties" : {
+        "mapreduce.map.memory.mb" : "4096",
+        "mapreduce.task.files.preserve.filepattern" : ".*",
+        "mapreduce.reduce.memory.mb" : "4096",
+        "keep.task.files.pattern" : ".*",
+        "mapreduce.map.java.opts" : "-server -Xmx4096m -Duser.timezone=UTC -Dfile.encoding=UTF-8 -XX:+PrintGCDetails -XX:+PrintGCTimeStamps",
+        "mapreduce.job.user.classpath.first" : "true",
+        "mapreduce.reduce.java.opts" : "-server -Xmx4096m -Duser.timezone=UTC -Dfile.encoding=UTF-8 -XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+      },
+      "ingestionMode" : "REDUCE_MERGE",
+      "combineText" : false,
+      "useCombiner" : false,
+      "minReducer" : 1,
+      "maxReducer" : 100,
+      "scatterParam" : -1,
+      "bytesPerReducer" : -1,
+      "buildV9Directly" : true,
+      "numBackgroundPersistThreads" : 0
+    }
+  },
+  "dataSource" : "cdis_cdis_user_02"
+}
