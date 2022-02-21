@@ -59,7 +59,7 @@ FROM employee;
 
 
 
-CREATE TABLE `employee_wrap`(
+CREATE EXTERNAL TABLE `employee_wrap`(
   `emp_no` bigint,
   `birth_date` string,
   `first_name` string,
@@ -71,6 +71,8 @@ WITH SERDEPROPERTIES (
    "separatorChar" = ",",
    "quoteChar"     = "\""
 )
+LOCATION
+  '/data-src/employee_wrap'
 ;
 LOAD DATA LOCAL INPATH '/Users/seoeun/data-src/employee_wrap/employee_wrap.csv' INTO TABLE employee_wrap;
 LOAD DATA INPATH '/hive-data/employee_wrap.csv' INTO TABLE employee_wrap;
